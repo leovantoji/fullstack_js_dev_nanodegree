@@ -5,6 +5,7 @@
 - [x] [Intro to Java Script](https://www.udacity.com/course/intro-to-javascript--ud803)
 - [ ] [JavaScript and the DOM](https://classroom.udacity.com/courses/ud117)
 - [x] [Object-Oriented JavaScript](https://classroom.udacity.com/courses/ud711)
+- [x] [Intro to HTML and CSS](https://classroom.udacity.com/courses/ud001)
 
 ## Backend Development with Node.js
 Objectives:
