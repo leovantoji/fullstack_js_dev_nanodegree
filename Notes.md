@@ -27,6 +27,23 @@ Good use cases for Node.js include: eCommerce, blogging, chat apps, social netwo
 Node.js uses Google's V8 engine as a runtime to process JavaScript.
 ![v8_stack](https://github.com/leovantoji/fullstack_js_dev_nanodegree/blob/main/images/fsjs-c1-l1-v8-stack.jpg)
 
+Export JavaScript from file(s). It's common to see shorthand property in use.
+```js
+// working file = util/logger.js
+
+// exports as objects
+module.exports = {
+    myFirstFunction: myFirstFunction,
+    mySecondFunction: mySecondFunction
+}
+
+// using ES6 shorthand property names
+module.exports = {
+    myFirstFunction,
+    mySecondFunction
+}
+```
+
 **Path module** allows us to normalize paths to work across platform.
 ```js
 const path = require('path');
@@ -55,3 +72,23 @@ Six phases of the **Event Loop**:
 - Close - loop continues if there are more timers or I/O calls. If all timers and I/O calls are done, the loop closes and the process ends.
 
 ![event_loop](https://github.com/leovantoji/fullstack_js_dev_nanodegree/blob/main/images/fsjs-c1-l1-event-loop.jpg)
+
+**Node Package Manager (NPM)** is both a **tool for managing project dependencies** via command line and a **website hosting more than 1 million third-party packages**.
+- Modules are shared as packages.
+- Packages extend the functionality of your app.
+- Modules are stored in the app's `node_modules` folder.
+- Core modules include `path`, `Filesystem`, and more.
+
+General steps to work on NPM project:
+- Initialize NPM: `npm init` (normal) and `npm init -y` (default settings)
+- Adding dependencies (e.g. `prettier`):
+  ```
+  npm i prettier // install prettier
+  npm i --save-dev prettier // install to dev dependencies
+  npm i --save-dev prettier@2.2.1 // install a specific version of prettier
+  ```
+- Using dependencies (e.g. `prettier`): 
+  - Add a `prettier` script to `package.json` file.
+  - Create a `.prettierrc` file for any custom configurations.
+  - Run `npm run prettier` to run `prettier`.
+  
