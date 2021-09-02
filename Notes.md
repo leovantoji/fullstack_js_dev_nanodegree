@@ -92,3 +92,16 @@ General steps to work on NPM project:
   - Create a `.prettierrc` file for any custom configurations.
   - Run `npm run prettier` to run `prettier`.
   
+Basic TypeScript types:
+- `string`: string types, textual data.
+- `number`: number types incl. integers and decimals.
+- `boolean`: `true`/`false`.
+- Union types: more than one type can be used.
+    ```ts
+    let studentPhone: (number | string);
+    ```
+- `null` and `undefined`.
+- `void`: used as a return type when the function returns nothing.
+- `never`: used as a return type when the function will never return anything.
+- `any`: should be avoided. Used when the type of the item being typed can be anything.
+- `unknown`: used when the type of the thing being typed is unknowned. Used heavily for type assertion.
