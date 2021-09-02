@@ -105,3 +105,69 @@ Basic TypeScript types:
 - `never`: used as a return type when the function will never return anything.
 - `any`: should be avoided. Used when the type of the item being typed can be anything.
 - `unknown`: used when the type of the thing being typed is unknowned. Used heavily for type assertion.
+- `Array`: to type as an array, use the type, followed by square brackets.
+    ```ts
+    let arr: string[]; // only accepts strings
+    let arr2: (string | number)[]; // accepts strings and numbers
+    ```
+- `Tuple`: tuples are not native to JavaScript. When you know exactly what data will be in the array, and you will not be adding to the array or modifying the type of any value, you can use a tuple.
+    ```ts
+    let arr: [string, number, string]; // ['cat', 7, 'dog']
+    ```
+- `enum`: enums are not native to JavaScript but are similar to enumerations used in other languages like C++ and Java. You use an enum when you have a constant set of values that will not be changed. By default, the values in an enum are also given a numeric value starting at 0. However, the numeric value can manually be set to any number explicitly or by calculation. Uses PascalCase to name the type.
+    ```ts
+    enum Weekend = { Saturday, Sunday};
+    ```
+
+**Interface**: With TypeScript, interfaces are simply used as the blueprint for the shape of something. Interfaces can be used to create functions but are most commonly seen to create objects. Use PascalCase for naming interfaces.
+
+**Optional** and `readonly` properties:
+- Optional: use when an object may or may not have a specific property by adding a `?` at the end of the property name.
+    ```ts
+    interface Student {
+        name: string,
+        age: number, 
+        enrolled: boolean,
+        phone?: number // phone is optional
+    }
+    ```
+- `readonly`: use when a property mustn't be modified after the object has been created. Keep in mind that this will only produce TypeScript errors and that the actual properties can still technically be changed as read-only does not exist in JavaScript.
+    ```ts
+    interface Student { 
+        name: string, 
+        age: number, 
+        enrolled: boolean,
+        readonly id: number // id is readonly
+    }
+    ```
+
+**Type aliases** do not create a new type; they rename a type. Therefore, you can use it to type an object and give it a descriptive name. But like the object type, once a type alias is created, it can not be added to; it can only be extended. Meaning, if you wanted to create an object from a type alias and then a second with additional properties, you would need to extend the type alias and make your second object with the extended alias. This makes interfaces the preferred method for creating objects.
+```ts
+type Student = {
+    name: string,
+    age: number,
+    enrolled: boolean;
+}
+
+let newStudent: Student = {
+    name: 'Maria',
+    age: 10,
+    enrolled: true
+}
+```
+
+**Factory functions**: To create a factory function with explicit typing, create an interface with the object's properties and methods and use the interface as the return type for the function.
+```ts
+interface Student {
+    name: string,
+    age: number,
+    greet(): void
+}
+
+const studentFactory = (name: string, age: number): Student => {
+    const greet = ():void => console.log('hello');
+    return { name, age, greet };
+}
+
+const myStudent = studentFactory('Hana', 16);
+```
