@@ -171,3 +171,32 @@ const studentFactory = (name: string, age: number): Student => {
 
 const myStudent = studentFactory('Hana', 16);
 ```
+
+**Generics**:
+- Reusable components that can be used with different types.
+- *types* as *parameters*. Use angle bracket syntax `<T>` where `T` is the type parameter.
+```ts
+// Generic function
+const getItem = <T>(arr: T[]): T => { return arr[0]; }
+
+// Typed function
+const getItem = (arr: number[]): number => { return arr[0]; }
+```
+
+**Asynchronous TypeScript**:
+- `async / await` always return a `Promise`. `Promise`s are built-in objects that have their own properties and methods. 
+- Use `Promise<type>` to set the type returned. 
+```ts
+const myFunc = async (): Promise<void> => { // do stuff };
+```
+
+
+
+
+
+
+
+
+
+
+
