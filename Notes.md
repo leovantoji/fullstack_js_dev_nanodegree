@@ -219,6 +219,39 @@ TypeScript best practices:
     - Longer function: **Explicit** typing. Easier to read.
 - Use the latest EcmaScript features.
 
+**Behavior-Driven Development** is a development style built on Test Driven Development where the focus is user interaction and stakeholders.
+
+**Test-Driven Development** is a development style well suited for backend development. It focuses on writing unit and integration tests that produce expected results. Test-driven development follows a development cycle. This cycle continues until the feature is complete. The tests remain in the codebase and as the feature is built upon or other features are added, the tests will ensure the feature continues to work as expected and will quickly alert the development team to any potential conflicts or bugs.
+- A feature request comes in.
+- Tests are written for the most simple functionality of the feature that includes edge cases and failure expectations.
+- Tests fail due to lack of code.
+- Code is written to make tests pass.
+- Code is refactored to be most concise and easy to read.
+
+![test_driven_development_cycle](https://github.com/leovantoji/fullstack_js_dev_nanodegree/blob/main/images/fsjs-c1-l3-tdd-cycle.jpg)
+
+**Expert Approach to Testing**:
+- Start with the simplest tests to identify any major failures early on.
+- Add tests for more complex situation and edge cases.
+- Test for graceful error handling.
+- Add more tests as needed.
+
+**Test Design Best Practices**
+- Test file structure and file names should match the app.
+- Describe and name the tests to be easy to read and maintain.
+- Design app features with pseudo code to inform tests.
+    - Pseudo code provides an overview of the application complexity and finds the easiest pieces of the test to write, build, refactor, and reiterate.
+- DRY (Don't Repeat Yourself)
+    - Write short tests that allow you to pinpoint why the test is failing.
+    - Try writing short, uncomplicated tests by first starting with an object with data that should pass and test each value in the object.
+    - Try this again with an object with data that should fail unless the appropriate error is passed to ensure error handling is a standard, not an afterthought.
+- Tests should be reliable.
+    - Tests should only fail when there are bugs in the tested code.
+    - Avoid conflicts with other tests.
+    - Call the correct objects for each test. The wrong objects may have the wrong input and create an error.
+    - Import the correct file for the test to avoid errors.
+
+
 
 
 
