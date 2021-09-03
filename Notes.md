@@ -190,7 +190,34 @@ const getItem = (arr: number[]): number => { return arr[0]; }
 const myFunc = async (): Promise<void> => { // do stuff };
 ```
 
+To create Type definitions when one is missing while using third-party modules
+- Create a `types` folder in your root directory with a subfolder specifically for `thirdParty` types.
+- Create a file in the `thirdParty` folder called `index.d.ts`.
+- Within your definition file, import the node module with the missing definition.
+- Use the `declare` keyword.
+- Write the definition which will likely be a class or an interface for a function.
+- Open `tsconfig.json` and find `"typeRoots"` to include the new types directory.
+```ts
+// example
+import _ from 'lodash';
 
+declare module 'lodash' {
+    interface LoDashStatic {
+        multiply(multiplier: number, multiplicand: number): number;
+    }
+}
+```
+
+TypeScript best practices:
+- Use `noImplicitAny` in `tsconfig.json` to prevent errors created by Typescript assuming `any` type.
+- Turn on all `strict` checking by setting `strict` to `true` in your `tsconfiig.json` settings.
+- Pay attention to when to use Implicit or Explicit typing.
+    - `const`: **Implicit** typing. Value is immutable so type can't be changed.
+    - `let`: **Explicit** typing. Value and type can be changed.
+    - Function with controlled inputs: **Implicit** typing. Output is controlled and code is simpler.
+    - Single-line arrow function: **Implicit** typing. Simplier code.
+    - Longer function: **Explicit** typing. Easier to read.
+- Use the latest EcmaScript features.
 
 
 
