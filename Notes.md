@@ -251,6 +251,35 @@ TypeScript best practices:
     - Call the correct objects for each test. The wrong objects may have the wrong input and create an error.
     - Import the correct file for the test to avoid errors.
 
+Running Jasmine after code has compiled to JavaScript:
+![jasmine](https://github.com/leovantoji/fullstack_js_dev_nanodegree/blob/main/images/fsjs-c1-l3-jasmine.jpg)
+
+Installing Jasmine and setting up the testing file structure for testing.
+- Configuring Jasmine:
+    - Install Jasmine: `npm i jasmine`.
+    - Add a reporter for outputting Jasmine results to the terminal: `npm i jasmine-spec-reporter`.
+    - Add type definitions for Jasmine with: `npm i --save-dev @types/jasmine`.
+- Add testing scripts in `scripts` objects in the `package.json` file: `"jasmine": "jasmine"`.
+- Set up the file structure:
+```
+├── node_modules
+├── spec
+│      ├──  support
+│      └── jasmine.json
+├── src
+│     ├──  tests
+│     │     ├── helpers
+│     │     │      └── reporter.ts
+│     │     └── indexSpec.ts
+│     └── index.ts
+├── package-lock.json
+├── package.json
+└── tsconfig.json
+```
+
+Best practices for file naming: When creating files for tests, a best practice is to name the `.ts` file the same as the `.js` file to be tested with `Spec` appended to the end. The more tests needed to be run, the more test files will need to be created. Be sure to follow this best practice to keep track of the test file that contains the tests for each `.js` file.
+
+
 
 
 
