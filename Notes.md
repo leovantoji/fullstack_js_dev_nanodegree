@@ -330,11 +330,47 @@ Test types:
     - `.toBeNull()`
     - `.toBeNan()`
 
+An **endpoint** is the **URL** of the **REST API** with the method that *gets*, *adds to*, or *modifies* the data of an API in some way.
+![endpoint](https://github.com/leovantoji/fullstack_js_dev_nanodegree/blob/main/images/fsjs-c1-l3-endpoint.jpg)
 
+Benefits of endpoint testing:
+- Confirms that the server is working.
+- Confirms that endpoints are configured properly.
+- More efficient than manual testing.
 
+Endpoint testing is not native to Jasmine and requires a 3rd party framework, like `supertest` to test the status of responses from server.
+- Install `supertest` as a dependency: `npm i supertest`
+- Add type definition to allow the code to compile without TypeScript errors: `npm i --save-dev @types/supertest`
+- Import `supertest` in the `spec` file.
+```ts
+import supertest from 'supertest';
+import app from '../index';
 
+const request = supertest(app);
+describe('Test endpoint responses', () => {
+    it('gets the api endpoint', async (done) => {
+        const response = await request.get('/api');
+        expect(response.status).toBe(200);
+        done();
+    }
+)});
+```
 
+Setup and Teardown of Suites are Jasmine features that allow you to:
+- Connect to a database before a test.
+- Connect to a different database for specific tests.
+- Run only a specific test.
+- Skip one or more tests.
+- `beforeEach` takes a callback function where we can tell the test to perform a task **before each test is run**.
+- `afterEach` is used if there is a task to be run **after each test is run**.
+- `beforeAll` is used if there is an operation to be run **once before** running all the specs in a suite.
+- `afterAll` is used if there is an operation to be run **once after** running all the specs in a suite.
 
+![beforeEach_afterEach](https://github.com/leovantoji/fullstack_js_dev_nanodegree/blob/main/images/fsjs-c1-l3-before-each-and-after-each.jpg)
 
+![beforeAll_afterAll](https://github.com/leovantoji/fullstack_js_dev_nanodegree/blob/main/images/fsjs-c1-l3-beforeall-and-afterall.jpg)
 
+Skipping or Specifying Tests:
+- To skip a test or suite, add `x` in front of `describe` or `it`. This can be helpful to avoid a time-consuming test.
+- To focus on one test or suite, add `f` in front of `describe` or `it`. This reduces clutter in the terminal.
 
