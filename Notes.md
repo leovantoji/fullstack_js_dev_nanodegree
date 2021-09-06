@@ -279,7 +279,56 @@ Installing Jasmine and setting up the testing file structure for testing.
 
 Best practices for file naming: When creating files for tests, a best practice is to name the `.ts` file the same as the `.js` file to be tested with `Spec` appended to the end. The more tests needed to be run, the more test files will need to be created. Be sure to follow this best practice to keep track of the test file that contains the tests for each `.js` file.
 
+Suites and Specs:
+- **Spec**: an individual test.
+- **Suite**: a collection of similar tests related to one function.
+- Tests should cover all intended behaviors.
+- Error handling should also be tested.
+![suites_specs](https://github.com/leovantoji/fullstack_js_dev_nanodegree/blob/main/images/fsjs-c1-l3-suites-and-specs.jpg)
 
+Jasmine Syntax:
+- Use the `describe` keyword followed by a short description of what the suite is testing and one or more specs.
+- A best practice is to start a sentence with *it* and then complete the sentence with the description of what the suite is testing.
+```jasmine
+describe("suite description", () => {
+    it("describes the spec", () => {
+        const myVar = true;
+        expect(myVar).toBe(true);
+    });
+});
+```
+
+Test types:
+- Truthiness:    
+    - `.toBeTruthy()` passes when:
+        - The expectation has any non-zero value.
+        - The expectation evaluates to `true`.
+    - `.toBeFalsy()` passes when the value is:
+        - `0`
+        - `''` (an empty string)
+        - `undefined`
+        - `null`
+        - `NaN`
+    - If you just need the Boolean value of `false`, use `.toEqual()`
+- Numerical Matchers:
+    - `.toBeCloseTo(expected value, precision)
+        - passes if a value is within a specified precision of the expected value.
+        - precision is optional and represents the number of decimal points to check (default to 2).
+    - `toBeGreaterThan(expected value)`
+    - `toBeLessThan(expected value)`
+    - `toBeGreaterThanOrEqual(expected value)`
+    - `toBeLessThanOrEqual(expected value)`
+- Negating Other Matchers: `!` in JavaScript, `not` in TypeScript, and `.not` in Jasmine.
+- Exceptions:
+    - `.toThrow(expected value)`
+    - `.toThrowError(expected value, expected message)` (expected value and expected message are optional)
+- Other Matchers:
+    - `.toContain(expected value)`
+    - `.toMatch(expected value)`
+    - `.toBeDefined()`
+    - `.toBeUndefined()`
+    - `.toBeNull()`
+    - `.toBeNan()`
 
 
 
