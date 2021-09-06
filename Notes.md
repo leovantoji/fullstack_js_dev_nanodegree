@@ -374,3 +374,11 @@ Skipping or Specifying Tests:
 - To skip a test or suite, add `x` in front of `describe` or `it`. This can be helpful to avoid a time-consuming test.
 - To focus on one test or suite, add `f` in front of `describe` or `it`. This reduces clutter in the terminal.
 
+The Testing Pyramid
+- UI Testing: Does the user interface work as expected?
+- End to End Testing: Does the application work as expected?
+- Integration Testing: Do services integrate as expected?
+- Unit Testing: Does the code run as expected?
+![testing_pyramid](https://github.com/leovantoji/fullstack_js_dev_nanodegree/blob/main/images/fsjs-c1-l3-testing-pyramid.jpg)
+
+Jasmine works well with **Unit Testing** and **Integration Testing**. Remember, the difference between Unit Testing and Integration Testing is the use of third-party integration. An example would be function that creates an endpoint. This requires a Unit Test. However, if the use case requires testing of the response from the endpoint and requires a third-party tool to do so, this becomes an integration test. Jasmine can be used for **End-to-End Testing** with a tool call **Selenium** to emulate user interactions. For **UI Testing**, Jasmine is simply not helpful.
