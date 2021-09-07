@@ -382,3 +382,47 @@ The Testing Pyramid
 ![testing_pyramid](https://github.com/leovantoji/fullstack_js_dev_nanodegree/blob/main/images/fsjs-c1-l3-testing-pyramid.jpg)
 
 Jasmine works well with **Unit Testing** and **Integration Testing**. Remember, the difference between Unit Testing and Integration Testing is the use of third-party integration. An example would be function that creates an endpoint. This requires a Unit Test. However, if the use case requires testing of the response from the endpoint and requires a third-party tool to do so, this becomes an integration test. Jasmine can be used for **End-to-End Testing** with a tool call **Selenium** to emulate user interactions. For **UI Testing**, Jasmine is simply not helpful.
+
+How a **server works**:
+![server](https://github.com/leovantoji/fullstack_js_dev_nanodegree/blob/main/images/fsjs-c1-l4-how-a-server-works.jpg)
+
+**Common HTTP Requests**:
+- **GET**: retrieve data from the server.
+- **POST**: send data to the server.
+- **DELETE**: remove data from the server.
+- **PUT**: replace data on the server.
+- **PATCH**: update data on the server.
+
+**Query Parameters**:
+- Query strings are parameters in the URL, identified by a `?`.
+- To chain multiple parameters together in a query string, use `&`.
+![query_string](https://github.com/leovantoji/fullstack_js_dev_nanodegree/blob/main/images/fsjs-c1-l4-query-parameters.jpg)
+
+**HTTP Response Status Codes**:
+|Status Code Range|Example Code|
+|:-|:-|
+|100-199: information|<ul><li>100: Continue</li></ul>|
+|200-299: request was successful|<ul><li>200: OK</li><li>201: Created</li></ul>|
+|300-399: request was redirected|<ul><li>301: Moved Permanently</li><li>307: Temporary Redirect</li></ul>|
+|400-499: client-side error|<ul><li>400: Bad Request</li><li>401: Unauthorized</li><li>405: Method not Allowed</li></ul>|
+|500-599: server-side error|<ul><li>500: Internal Server Error</li></ul>|
+
+**Idempotency**: multiple identical requests to the API. The only method not considered idempotent is **POST** since **POST** adds a new resource each time. On the other hand, **GET**, **DELETE**, **PATCH**, and **PUT** act on the same resource each time producing the same result.
+
+|HTTP Request|Idempotency and Security|
+|:-|:-|
+|**GET**|<ul><li>Safe because the database doesn’t change</li><li>Endpoint is stored in session history</li><li>Can be cached</li><li>Often logged</li></ul>|
+|**POST**|<ul><li>Endpoint not stored in session history</li><li>Protects user data from being inadvertently exposed</li></ul>|
+
+
+
+
+
+
+
+
+
+
+
+
+
