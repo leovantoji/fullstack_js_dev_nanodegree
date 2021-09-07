@@ -9,10 +9,10 @@
 
 ## Backend Development with Node.js
 Objectives:
-- [ ] Setup and install a NodeJS environment to run server-side javascript and setup NPM to create project dependencies. 
-- [ ] Write valid, clear TypeScript.
-- [ ] Deploy unit tests with Jasmine.
-- [ ] Build a server with Express.
+- [x] Setup and install a NodeJS environment to run server-side javascript and setup NPM to create project dependencies. 
+- [x] Write valid, clear TypeScript.
+- [x] Deploy unit tests with Jasmine.
+- [x] Build a server with Express.
 
 The backend is responsible for processing the requests that come into the app and managing its data. A backend consists of three parts:
 - **The server**: the computing resource that listens to requests from the frontend.
