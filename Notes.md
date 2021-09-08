@@ -9,7 +9,7 @@
 
 ## Backend Development with Node.js
 Objectives:
-- [x] Setup and install a NodeJS environment to run server-side javascript and setup NPM to create project dependencies. 
+- [x] Setup and install a NodeJS environment to run server-side javascript and setup NPM to create project dependencies.
 - [x] Write valid, clear TypeScript.
 - [x] Deploy unit tests with Jasmine.
 - [x] Build a server with Express.
@@ -87,11 +87,11 @@ General steps to work on NPM project:
   npm i --save-dev prettier // install to dev dependencies
   npm i --save-dev prettier@2.2.1 // install a specific version of prettier
   ```
-- Using dependencies (e.g. `prettier`): 
+- Using dependencies (e.g. `prettier`):
   - Add a `prettier` script to `package.json` file.
   - Create a `.prettierrc` file for any custom configurations.
   - Run `npm run prettier` to run `prettier`.
-  
+
 Basic TypeScript types:
 - `string`: string types, textual data.
 - `number`: number types incl. integers and decimals.
@@ -126,16 +126,16 @@ Basic TypeScript types:
     ```ts
     interface Student {
         name: string,
-        age: number, 
+        age: number,
         enrolled: boolean,
         phone?: number // phone is optional
     }
     ```
 - `readonly`: use when a property mustn't be modified after the object has been created. Keep in mind that this will only produce TypeScript errors and that the actual properties can still technically be changed as read-only does not exist in JavaScript.
     ```ts
-    interface Student { 
-        name: string, 
-        age: number, 
+    interface Student {
+        name: string,
+        age: number,
         enrolled: boolean,
         readonly id: number // id is readonly
     }
@@ -184,8 +184,8 @@ const getItem = (arr: number[]): number => { return arr[0]; }
 ```
 
 **Asynchronous TypeScript**:
-- `async / await` always return a `Promise`. `Promise`s are built-in objects that have their own properties and methods. 
-- Use `Promise<type>` to set the type returned. 
+- `async / await` always return a `Promise`. `Promise`s are built-in objects that have their own properties and methods.
+- Use `Promise<type>` to set the type returned.
 ```ts
 const myFunc = async (): Promise<void> => { // do stuff };
 ```
@@ -414,15 +414,130 @@ How a **server works**:
 |**GET**|<ul><li>Safe because the database doesn’t change</li><li>Endpoint is stored in session history</li><li>Can be cached</li><li>Often logged</li></ul>|
 |**POST**|<ul><li>Endpoint not stored in session history</li><li>Protects user data from being inadvertently exposed</li></ul>|
 
+The structure of an Express project is very similar to the structure of a book:
+- The server acts as the entry point or title page of the book.
+- The `package.json` file includes the publisher/copyright information.
+- The main route file acts as an index to the different chapters in your book.
+- Each route file contains the endpoints for available actions.
+![query_string](https://github.com/leovantoji/fullstack_js_dev_nanodegree/blob/main/images/fsjs-l1-c4-express-is-like-a-book.jpg)
 
+**Express Basics**:
+- Application Object: every Express application requires the creation of an application object. All of the core functions of Express take place on the application object including endpoint methods. Core methods include:
+    - `.listen()`: listens for connections to a specified host and port.
+    - `.get()`: used to get a route. This method takes a route and a callback function as arguments. The callback function takes two arguments, the request from the browser and the response from the server. In addition, middleware can also be passed in as an argument.
+    - `.post()`, `.put()`, `.delete()`: the other app methods that make up endpoints. They require having the ability to store data.
+![server_creation](https://github.com/leovantoji/fullstack_js_dev_nanodegree/blob/main/images/1f2aeba4-fea0-4a29-bbd5-fcfd307faf1d-4-5005-c.jpg)
+- Request Object: is the HTTP request to the server. Request has many properties and methods available to it for getting information about the request from the browser.
+    - `ip`: a property to get the IP of the request.
+    - `cookies`: a property to access cookie information of a request.
+    - `path`: a property to get the path of the URL request.
+    - `subdomains`: a property to get the subdomain of a URL request.
+    - `params()`: a method to get the param values from a request URL.
+- Response Object: is returned by the server after a request. It is the response from the server back to the browser.
+    - `send()`: a method to send a response from the server to the browser.
+    - `status()`: a method to set an HTTP status.
+    - `cookie()`: a method to set a cookie for the route.
 
+**Middleware** is a function that is applied between the request and response. Common uses of middleware include checking the authentication status of a user before sending a response or logging the request before sending the response.
+![middleware](https://github.com/leovantoji/fullstack_js_dev_nanodegree/blob/main/images/fsjs-c1-l4-middelware.jpg)
 
+Types of middleware:
+- Built-in middleware. Express contains 3 built-in middlewares:
+    - `express.static`: serving static files (e.g., HTML, etc.)
+    - `.json`: parsing incoming JSON
+    - `.urlencoded`: parsing incoming urlencoded data
+- 3rd-party middleware: installed through NPM.
+- Custom middleware.
 
+There are 2 ways to apply middleware:
+- Application/route level: Apply the middleware to an entire application or the entirety of a route on either the entry point application object, or to specific routes.
+    ```ts
+    app.use(middleware);
+    ```
+- Endpoint level: Apply middleware to specific endpoint.
+    ```ts
+    students.get('/', middleware, (req, res) => {
+        // do something
+    });
+    ```
 
+**Router Object**:
+When building an express application, it is best practice to keep the server and application endpoints and functionality separate. With the router object, you are able to create a directory of routes and separate the functionality of each route onto its own file.
 
+File System is one of the core `node.js` modules. It is a larger module and requires import for use. Working with the file system allows you to access files within your system, and then on the server once the project is launched. It only allows access to the local file system, not users' file systems. The File System Module also allows us to work with data by creating, delete, reading, and writing to files. File System is almost entirely asynchronous by default, but there are some methods that are synchronous and should only be used when first opening a file such as wanting to have a file read before the rest of the code runs. Otherwise, the remainder of the file system module is asynchronous. To avoid using callbacks, we can use the File System Promises API which allows the asynchronous methods to return promises.
+```ts
+import {promises as fsPromises} from 'fs';
+```
 
+**File System vs Database**:
+![fs_vs_db](https://github.com/leovantoji/fullstack_js_dev_nanodegree/blob/main/images/fsjs-c1-l4-filesystem-vs-database.jpg)
 
+**File System Flags** are used for identifying read/write operations available when opening a file.
+- `r`: allows for the reading of a file.
+- `r+`: allows for the reading and writing of a file, will overwrite content in the file.
+- `w+`: allows for the reading and writing of a file, will create a file if it does not yet exist.
+- `a`: allows for reading and writing of a file and will append new content to the end of the file, not overwriting current content.
+- `a+`: allows for reading and writing of a file, will create a file if it does not yet exist, and will append new content to the end of the file, not overwriting current content.
 
+**Write to a file**:
+- `.open()`: Used to open a file. Takes a filename and flag as arguments.
+    ```js
+    const writeData = async () => {
+        const myFile = await fsPromises.open('myfile.txt', 'a+');
+    }
+    ```
+- `.write()`: Used to write to a file that is already open. Takes data, and options as arguments.
+    ```js
+    const writeData = async () => {
+        const myFile = await fsPromises.open('myfile.txt', 'a+');
+        await myFile.write('TEXT TO BE ADDED');
+    }
+    ```
+- `.writeFile()`: Used to write to a file, overwriting any content that may already exist in the file. Takes a filename, data, and options as arguments.
+    ```js
+    const writeData = async () => {
+        const myFile = await fsPromises.writeFile('myfile.txt', 'TEXT TO BE ADDED')
+    }
+    ```
 
-
-
+**Read, Move, Rename, and Delete files**:
+- `.read()`: Used to read a file. The file must be opened first. Allows for reading only a portion of a file, but requires the creation of a buffer to do so. Takes a buffer and options as arguments.
+    ```js
+    const readData = async () => {
+        const buff = new Buffer.alloc(26);
+        const myFile = await fsPromises.open('myfile.txt', 'a+');
+        await myFile.read(buff, 0, 26);
+        console.log(myFile);
+    }
+    ```
+- `.readFile()`: Used to read the entire contents of a file. Takes a path and options as arguments. Is the preferred method for reading files when the entire content needs to be read.
+    ```js
+    const readData = async () => {
+        const myFile = await fsPromises.readFile('myfile.txt', 'utf-8');
+        console.log(myFile);
+    }
+    ```
+- `.rename()`: Used to rename or move a file. Takes the old file path and new file path as arguments.
+    ```js
+    const moveData = async () => {
+        await fsPromises.rename('old-name.txt', 'new-name.txt');
+    }
+    ```
+- `.mkdir()`: Used to make new directories. Takes a directory path as an argument.
+    ```js
+    const makeDir = async () => {
+        await fsPromises.mkdir('src');
+    }
+    ```
+- `.unlink()`: Used to remove a file. Takes a file path as an argument.
+    ```js
+    const removeFile = async () => {
+        await fsPromises.unlink('myFile.txt');
+    }
+    ```
+- `.rmdir()`: Used to remove an empty directory. Takes a directory path as an argument.
+    ```js
+    const removeFile = async () => {
+        await fsPromises.rmdir('src');
+    }
+    ```
